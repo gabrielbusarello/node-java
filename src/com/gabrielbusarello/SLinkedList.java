@@ -1,5 +1,6 @@
 package com.gabrielbusarello;
 
+import java.util.Comparator;
 import java.util.NoSuchElementException;
 
 public class SLinkedList<T> {
@@ -167,7 +168,7 @@ public class SLinkedList<T> {
      * @throws IndexOutOfBoundsException Se a lista estiver vazia
      */
     public T get(int index) {
-        if (index < 0 || index >= size) throw new IndexOutOfBoundsException("Index: " + index);
+        if (index < 0 || index > size) throw new IndexOutOfBoundsException("Index: " + index);
         Nodo<T> temp = head;
         for (int i = 0; i < index; i++) {
             temp = temp.getNode();
@@ -182,7 +183,7 @@ public class SLinkedList<T> {
      * @throws IndexOutOfBoundsException (index >= size  || index < 0)
      */
     public T remove(int index) {
-        if (index < 0 || index >= size) throw new IndexOutOfBoundsException("Index: " + index);
+        if (index < 0 || index > size) throw new IndexOutOfBoundsException("Index: " + index);
         Nodo<T> temp = head;
         Nodo<T> before = null;
         for(int i = 0; i < index; i++) {
@@ -208,7 +209,7 @@ public class SLinkedList<T> {
      * @throws IndexOutOfBoundsException (index < 0 || index > size())
      */
     public void add(int index, T value) {
-        if (index < 0 || index >= size) throw new IndexOutOfBoundsException("Index: " + index);
+        if (index < 0 || index > size) throw new IndexOutOfBoundsException("Index: " + index);
         Nodo<T> temp = head;
         Nodo<T> before = null;
         for(int i = 0; i < index; i++) {
@@ -230,16 +231,34 @@ public class SLinkedList<T> {
     }
 
     /**
+     * Adiciona um novo elemento na posicao index sorted
+     * @param value
+     * @throws IndexOutOfBoundsException (index < 0 || index > size())
+     */
+    public void addSorted(T value, Comparator comparator) {
+        Nodo<T> temp = head;
+        int i = 0;
+        for (i = 0; i < size; i++) {
+            if (comparator.compare(temp.getValor(), value) > 0) {
+                break;
+            }
+            temp = temp.getNode();
+        }
+        add(i, value);
+    }
+
+    /**
      * Atualiza o elemento da posiçao index
      * @param index
      * @throws IndexOutOfBoundsException
      */
     public void set(int index, T value) {
-        if (index < 0 || index >= size) throw new IndexOutOfBoundsException("Index: " + index);
+        if (index < 0 || index > size) throw new IndexOutOfBoundsException("Index: " + index);
         Nodo<T> temp = head;
         for(int i = 0; i < index; i++) {
             temp = temp.getNode();
         }
         temp.setValor(value);
     }
+
 }

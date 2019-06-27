@@ -2,6 +2,9 @@ package com.gabrielbusarello;
 
 import com.gabrielbusarellod.DLinkedList;
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -38,6 +41,14 @@ public class Main {
         System.out.println(listD.remove(0));
         System.out.println(listD.size());
         System.out.println(listD.isEmpty());
+
+        SLinkedList<Integer> listSS = new SLinkedList<Integer>();
+        Comparator<Integer> comparator = (o1, o2) -> o1 - o2;
+        listSS.addSorted(3, comparator);
+        listSS.addSorted(5, comparator);
+        listSS.addSorted(2, comparator);
+        listSS.addSorted(7, comparator);
+        System.out.println(Arrays.toString(listSS.toArray()));
 
         /*Nodo<String> gru = new Nodo<String>();
         gru.setValor("gru");

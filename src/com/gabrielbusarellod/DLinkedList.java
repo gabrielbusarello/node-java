@@ -1,5 +1,6 @@
 package com.gabrielbusarellod;
 
+import java.util.Comparator;
 import java.util.NoSuchElementException;
 
 public class DLinkedList<T> {
@@ -164,7 +165,7 @@ public class DLinkedList<T> {
      * @throws IndexOutOfBoundsException Se a lista estiver vazia
      */
     public T get(int index) {
-        if (index < 0 || index >= size) throw new IndexOutOfBoundsException("Index: " + index);
+        if (index < 0 || index > size) throw new IndexOutOfBoundsException("Index: " + index);
         Node<T> temp = head;
         for (int i = 0; i < index; i++) {
             temp = temp.getNext();
@@ -179,7 +180,7 @@ public class DLinkedList<T> {
      * @throws IndexOutOfBoundsException (index >= size  || index < 0)
      */
     public T remove(int index) {
-        if (index >= size  || index < 0) throw new IndexOutOfBoundsException("index "+index);
+        if (index > size  || index < 0) throw new IndexOutOfBoundsException("index "+index);
         Node<T> temp = head;
         Node<T> before = null;
         for (int i = 0; i < index; i++) {
